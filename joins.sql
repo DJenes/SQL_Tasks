@@ -10,7 +10,7 @@ SELECT p1.firstname, p1.lastname,p2.jobtitle, p2.birthdate
 --1.2
 
 SELECT p1.firstname, p1.lastname,p2.jobtitle
-  FROM FROM person.person  p1
+FROM person.person  p1
  INNER JOIN 
  (
      SELECT jobtitle,businessentityid 
