@@ -6,16 +6,16 @@ GROUP BY departmentid
 
 -- 1.2
 
-SELECT nationalidnumber,h1.businessentityid
+SELECT h1.businessentityid, h1.jobtitle,payrate.max_rate
 FROM HumanResources.Employee h1
-LEFT JOIN 
+INNER JOIN 
     (
-		SELECT DISTINCT h2.businessentityid,MAX(rate) 
+		SELECT DISTINCT h2.businessentityid,MAX(rate)AS max_rate
                 FROM HumanResources.EmployeePayHistory h2
             GROUP BY businessentityid
             ORDER BY businessentityid
 	) AS payrate
-   ON h1.businessentityid = payrate.businessentityid 			
+   ON h1.businessentityid = payrate.businessentityid 	
 
 --1.3
 
@@ -61,7 +61,7 @@ LEFT JOIN
   
 
 
-SELECT sub_category.name, AVG(total_due.totaldue)
+SELECT sub_category.name, AVG(sub_total.subtotal)
 FROM
 (
 SELECT p1.name,p2.productid
@@ -75,15 +75,15 @@ INNER JOIN (
 
 INNER JOIN
 (
-SELECT s1.totaldue, s2.productid
+SELECT s1.subtotal, s2.productid
   FROM Sales.SalesOrderHeader s1
 INNER JOIN (
 	       SELECT productid, salesorderid
 	         FROM Sales.SalesOrderDetail
            ) AS s2
   ON s1.salesorderid = s2.salesorderid
-	) AS total_due
-ON sub_category.productid = total_due.productid
+	) AS sub_total
+ON sub_category.productid = sub_total.productid
 GROUP BY sub_category.name
     
   
