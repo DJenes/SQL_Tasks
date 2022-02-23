@@ -1,3 +1,20 @@
+/*
+Задание 1 (10 балов)
+Задача: Зная электронную почту сотрудника нужно получить его и имя и фамилию, а также его возраст.
+Условие:
+Создать скрипт:  <your_lastname>_sp_task1.sql
+Имя процедуры - <your_lastname>.<procedure_name>_task1
+Используйте таблицы person.emailaddress, person.person, person.employee
+Параметры:
+<inp> – character varying(100).
+Возврат функции:
+<return> – varchar.
+Пример вывода: “<firstname> <lastname> - <age>”
+*/
+
+
+
+
 
 CREATE OR REPLACE function  mamatova.get_info_task1(email Varchar(100)) 
 RETURNS varchar 
