@@ -1,3 +1,51 @@
+/*
+Задание 3 (20 балов)
+Пример: Нужно получить ежедневные, месячные и годовые отчеты о сумме продаж, средней сумме продаж, количестве заказов, как был оформлен заказ(онлайн или офлайн) например, за последние 10 лет.
+Выполнить: (В вашей собственной схеме нужно создать новые таблицы.)
+drop table if exists <your_lastname>.sales_report_total_daily;
+create table <your_lastname>.sales_report_total_daily (
+    date_report             timestamp with time zone,
+    onlineorderflag     boolean,
+    sum_total           numeric,
+    avg_total           numeric,
+    qty_orders          int);
+drop table if exists <your_lastname>.sales_report_total_monthly;
+create table if not exists <your_lastname>.sales_report_total_monthly (
+    date_report            timestamp with time zone,
+    onlineorderflag     boolean,
+    sum_total           numeric,
+    avg_total           numeric,
+    qty_orders          int);
+drop table if exists <your_lastname>.sales_report_total_yearly;
+create table if not exists <your_lastname>.sales_report_total_yearly (
+    date_report            timestamp with time zone,
+    onlineorderflag     boolean,
+    sum_total           numeric,
+    avg_total           numeric,
+    qty_orders          int);
+Задача: Создать хранимую процедуру для получения отчетов, которые записываются в таблицы.
+ежедневные -  <your_lastname>.sales_report_total_daily 
+месячные -  <your_lastname>.sales_report_total_monthly 
+годовые -  <your_lastname>.sales_report_total_yearly
+Условие:
+Создать скрипт:  <your_lastname>_sp_task3.sql
+Имя процедуры - <your_lastname>.<procedure_name>_task3
+Используйте таблицу sales.salesorderheader
+Параметры:
+<inp> – int.
+
+
+*/
+
+
+
+
+
+
+
+
+
+
 CREATE OR REPLACE PROCEDURE mamatova.report_task3(input_data int)
 language plpgsql
 AS $$ 
