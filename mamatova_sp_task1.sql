@@ -26,10 +26,10 @@ AS $$
 		SELECT p2.firstname||' '||p2.lastname||' - '||DATE_PART('year', CURRENT_DATE) - DATE_PART('year', p2.birthdate)
 		INTO res
 		FROM person.emailaddress p3
-		JOIN (
+		INNER JOIN (
 		SELECT p.firstname,p.lastname,h1.birthdate,p.businessentityid
 		FROM person.person p
-		JOIN HumanResources.Employee h1
+		INNER JOIN HumanResources.Employee h1
 		on p.businessentityid= h1.businessentityid  
 		) AS p2
 		ON p3.businessentityid = p2.businessentityid
