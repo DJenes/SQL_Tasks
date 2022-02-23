@@ -1,3 +1,25 @@
+/*
+Задание 2 (20 балов)
+Пример: Есть торговая точка которая сотрудничает с поставщиками и имеет собственные цеха. В некоторых случаях руководство может как отказаться от собственного производства и заказывать у поставщиков так и начать свое производство -  отказаться от поставщиков.
+Выполнить: (В вашей собственной схеме нужно создать новую таблицу.)
+drop table if exists <your_lastname>.product;
+create table <your_lastname>.product as
+select *
+  from production.product;
+Задача: Создать хранимую процедуру для обновления столбца make_flag в таблице <your_lastname>.product, по столбцу name. Замечание: Если для заданного продукта значение флага совпадает вывести на экран  замечание “<YOUR_COMMENT_1>” и если такого продукта нет в таблице вывести “<YOUR_COMMENT_2>”.
+Условие:
+Создать скрипт:  <your_lastname>_sp_task2.sql
+Имя процедуры - <your_lastname>.<procedure_name>_task2
+Параметры:
+<inp_1> - character varying;
+<inp_2> - boolean (true or false).
+*/
+
+
+
+
+
+
 CREATE OR REPLACE PROCEDURE mamatova.flagchange_taks2(pr_name Varchar,
 													  flag_change boolean)
 language plpgsql
