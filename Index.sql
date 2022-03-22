@@ -1,7 +1,8 @@
 /*
-Создайте таблицу Customer со следующими колонками
-На колонке CustomerID создайте ограничение первичного ключа и индекс типа B-tree
+РЎРѕР·РґР°Р№С‚Рµ С‚Р°Р±Р»РёС†Сѓ Customer СЃРѕ СЃР»РµРґСѓСЋС‰РёРјРё РєРѕР»РѕРЅРєР°РјРё
+РќР° РєРѕР»РѕРЅРєРµ CustomerID СЃРѕР·РґР°Р№С‚Рµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° Рё РёРЅРґРµРєСЃ С‚РёРїР° B-tree
 */
+
 
 
 CREATE TABLE mamatova.Customer (
@@ -20,7 +21,7 @@ CREATE INDEX idex_CID ON mamatova.Customer USING btree(CustomerID);
 
 
 /*
-Создайте составной индекс типа B-tree на таблице Customer на колонках FirstName и LastName
+РЎРѕР·РґР°Р№С‚Рµ СЃРѕСЃС‚Р°РІРЅРѕР№ РёРЅРґРµРєСЃ С‚РёРїР° B-tree РЅР° С‚Р°Р±Р»РёС†Рµ Customer РЅР° РєРѕР»РѕРЅРєР°С… FirstName Рё LastName
 */
 
 
@@ -31,8 +32,9 @@ CREATE INDEX idex_FNLN ON mamatova.Customer USING btree(FirstName,LastName)
 
 
 /*
-Создайте такой индекс на таблице Customer, чтобы результат выполнения запроса
+РЎРѕР·РґР°Р№С‚Рµ С‚Р°РєРѕР№ РёРЅРґРµРєСЃ РЅР° С‚Р°Р±Р»РёС†Рµ Customer, С‡С‚РѕР±С‹ СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
 */
+
 
 
 CREATE INDEX idex_Age ON mamatova.Customer USING btree(Age)
@@ -42,9 +44,10 @@ CREATE INDEX idex_Age ON mamatova.Customer USING btree(Age)
 
 
 /*
-Создайте покрывающий индекс IX_Customer_ModifiedDate для быстрого выполнения запроса
-и проверьте, что он используется в плане запроса:
+РЎРѕР·РґР°Р№С‚Рµ РїРѕРєСЂС‹РІР°СЋС‰РёР№ РёРЅРґРµРєСЃ IX_Customer_ModifiedDate РґР»СЏ Р±С‹СЃС‚СЂРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
+Рё РїСЂРѕРІРµСЂСЊС‚Рµ, С‡С‚Рѕ РѕРЅ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ РїР»Р°РЅРµ Р·Р°РїСЂРѕСЃР°:
 */
+
 
 CREATE INDEX IX_Customer_ModifiedDate ON mamatova.customer (ModifiedDate) INCLUDE (FirstName,LastName)
 
@@ -54,8 +57,9 @@ CREATE INDEX IX_Customer_ModifiedDate ON mamatova.customer (ModifiedDate) INCLUD
 
 
 /*
-Удалите индекс PK_CustomerID из таблицы Customer
+РЈРґР°Р»РёС‚Рµ РёРЅРґРµРєСЃ PK_CustomerID РёР· С‚Р°Р±Р»РёС†С‹ Customer
 */
+
 
 DROP INDEX  mamatova.idex_cid
 
@@ -64,10 +68,12 @@ DROP INDEX  mamatova.idex_cid
 
 
 
+
 /*
-Создайте индекс типа Hash с названием PK_ Modified_Date в таблице Customer на колонке
+РЎРѕР·РґР°Р№С‚Рµ РёРЅРґРµРєСЃ С‚РёРїР° Hash СЃ РЅР°Р·РІР°РЅРёРµРј PK_ Modified_Date РІ С‚Р°Р±Р»РёС†Рµ Customer РЅР° РєРѕР»РѕРЅРєРµ
 ModifiedDate
 */
+
 CREATE INDEX PK_Modified_Date ON mamatova.customer USING hash (ModifiedDate)
 
 
@@ -75,8 +81,9 @@ CREATE INDEX PK_Modified_Date ON mamatova.customer USING hash (ModifiedDate)
 
 
 /*
-Переименуйте индекс PK_ Modified_Date на PK_ ModifiedDate
+РџРµСЂРµРёРјРµРЅСѓР№С‚Рµ РёРЅРґРµРєСЃ PK_ Modified_Date РЅР° PK_ ModifiedDate
 */
+
 
 ALTER INDEX mamatova.PK_Modified_Date RENAME TO PK_ModifiedDate
 
@@ -86,9 +93,10 @@ ALTER INDEX mamatova.PK_Modified_Date RENAME TO PK_ModifiedDate
 
 
 /*
-Создайте частичный индекс на колонке email только для тех записей, у которых active = true. И
-напишите запрос к таблице, в котором этот индекс будет использоваться.
+РЎРѕР·РґР°Р№С‚Рµ С‡Р°СЃС‚РёС‡РЅС‹Р№ РёРЅРґРµРєСЃ РЅР° РєРѕР»РѕРЅРєРµ email С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµС… Р·Р°РїРёСЃРµР№, Сѓ РєРѕС‚РѕСЂС‹С… active = true. Р
+РЅР°РїРёС€РёС‚Рµ Р·Р°РїСЂРѕСЃ Рє С‚Р°Р±Р»РёС†Рµ, РІ РєРѕС‚РѕСЂРѕРј СЌС‚РѕС‚ РёРЅРґРµРєСЃ Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ.
 */
+
 
 CREATE INDEX email_pk
 ON mamatova.customer (email)
@@ -104,11 +112,12 @@ WHERE active = true and  customerid between 55 and 273
 
 
 /*
-Создайте функциональный индекс в таблице Customer для быстрого поиска записей по такому
-правилу: если firstname = ‘firstname1’ и lastname = ‘lastname1’, то мы ищем ‘f, lastname1’.
-Проверьте план запроса, что этот индекс используется.
+РЎРѕР·РґР°Р№С‚Рµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Р№ РёРЅРґРµРєСЃ РІ С‚Р°Р±Р»РёС†Рµ Customer РґР»СЏ Р±С‹СЃС‚СЂРѕРіРѕ РїРѕРёСЃРєР° Р·Р°РїРёСЃРµР№ РїРѕ С‚Р°РєРѕРјСѓ
+РїСЂР°РІРёР»Сѓ: РµСЃР»Рё firstname = вЂfirstname1вЂ™ Рё lastname = вЂlastname1вЂ™, С‚Рѕ РјС‹ РёС‰РµРј вЂf, lastname1вЂ™.
+РџСЂРѕРІРµСЂСЊС‚Рµ РїР»Р°РЅ Р·Р°РїСЂРѕСЃР°, С‡С‚Рѕ СЌС‚РѕС‚ РёРЅРґРµРєСЃ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ.
 
 */
+
 
 
 CREATE INDEX fullname_idx
